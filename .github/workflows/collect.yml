@@ -8,6 +8,10 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 
+concurrency:
+  group: collect-oil-news-events
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -46,10 +50,11 @@ jobs:
       - name: Run one collection cycle
         run: python app/collector.py
 
-      - name: Commit updated DB
+          - name: Commit updated DB
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add energy_events.db || true
           git diff --cached --quiet && echo "No DB changes" || git commit -m "update oil event database"
+          git pull --rebase origin main
           git push
