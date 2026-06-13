@@ -61,6 +61,5 @@ jobs:
             echo "No DB changes"
           else
             git commit -m "update oil event database"
-            git pull --rebase origin main
-            git push
+            git push --force-with-lease
           fi
