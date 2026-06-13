@@ -70,3 +70,27 @@ Current focus:
 - High-impact news recognition
 - Price reaction analytics
 - Dashboard visualization
+
+프로젝트: Oil News Event Terminal
+
+현재 상태:
+- GitHub repo: Oil-news-event-terminal
+- GitHub Actions로 5분 cron 수집 시도 중
+- SQLite DB: energy_events.db
+- 테이블: news_headlines, events, price_reactions
+- Reuters Energy / Reuters World / Reuters Markets / FinancialJuice / Investing Commodities / Investing Energy / EIA / IEA / OPEC 수집 중
+- 약 300개 headlines 수집 확인
+- events는 현재 1개 생성됨
+
+문제점:
+- Trump / Iran / Powell / FOMC 같은 중요 뉴스가 단일 기사면 이벤트 생성 안 됨
+- 현재 클러스터 기준이 너무 엄격함
+- HIGH_IMPACT_TERMS 기반 단일 기사 candidate 로직 추가 예정
+
+향후 작업:
+1. 이벤트 생성 기준 완화
+2. HIGH_IMPACT_TERMS 추가
+3. candidate / confirmed / strong 재설계
+4. WTI / Brent / USDKRW 반응 저장 검증
+5. GitHub Pages 기반 대시보드 구축 (Streamlit 보류)
+
